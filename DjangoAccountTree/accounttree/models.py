@@ -25,8 +25,8 @@ class Account(models.Model):
         (CLIENT_CONTACT_LEVEL, 'Contact'),
     )
 
-    type = models.CharField(max_length=3, choices=ACCOUNT_TYPES)
-    account_level = models.CharField(max_length=3, choices=ACCOUNT_LEVELS)
+    type = models.CharField(max_length=3, choices=ACCOUNT_TYPES, default=PERSON_TYPE)
+    account_level = models.CharField(max_length=3, choices=ACCOUNT_LEVELS, default=CLIENT_CONTACT_LEVEL)
     name = models.CharField(max_length=50)
     _updated = models.DateTimeField(auto_now=True)
     _created = models.DateTimeField(auto_now=False, auto_now_add=True)
