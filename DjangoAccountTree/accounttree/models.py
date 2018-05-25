@@ -11,7 +11,22 @@ class Account(models.Model):
         (PERSON_TYPE, 'Person'),
     )
 
+    GLOBAL_ADMIN_LEVEL = 'GAL'
+    CLIENT_OWNER_LEVEL = 'COL'
+    CLIENT_ADMIN_LEVEL = 'CAL'
+    CLIENT_USER_LEVEL = 'CUL'
+    CLIENT_CONTACT_LEVEL = 'CCL'
+
+    ACCOUNT_LEVELS = (
+        (GLOBAL_ADMIN_LEVEL, 'Global Admin'),
+        (CLIENT_OWNER_LEVEL, 'Account Owner'),
+        (CLIENT_ADMIN_LEVEL, 'Administrator'),
+        (CLIENT_USER_LEVEL, 'User'),
+        (CLIENT_CONTACT_LEVEL, 'Contact'),
+    )
+
     type = models.CharField(max_length=3, choices=ACCOUNT_TYPES)
+    account_level = models.CharField(max_length=3, choices=ACCOUNT_LEVELS)
     name = models.CharField(max_length=50)
     _updated = models.DateTimeField(auto_now=True)
     _created = models.DateTimeField(auto_now=False, auto_now_add=True)
