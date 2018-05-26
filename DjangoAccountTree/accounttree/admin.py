@@ -14,7 +14,7 @@ class AccountAdminInline(admin.TabularInline):
 class AccountAdminClients(admin.ModelAdmin):
 
     module = Account
-    list_filter = ( 'owner', 'active', 'type',)
+    list_filter = ( 'owner', 'active', 'account_type',)
     list_display = ('name',  '__str__',)
     ordering = ['name']
     search_fields = ('name',)

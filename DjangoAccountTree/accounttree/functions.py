@@ -70,9 +70,9 @@ def new_client_short(request, me, current_account=None):
         else:
             return account_form
 
-    if current_account and current_account.type == "ORG":
+    if current_account and current_account.account_type == Account.ORGANIZATION_TYPE:
         account_type = Account.PERSON_TYPE
     else:
         account_type = Account.ORGANIZATION_TYPE
 
-    return AccountFormBasicOrg(initial={'parent': me.parent, 'type': account_type, 'owner': me.user, 'active': True})
+    return AccountFormBasicOrg(initial={'parent': me.parent, 'account_type': account_type, 'owner': me.user, 'active': True})
