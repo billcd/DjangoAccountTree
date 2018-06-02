@@ -7,4 +7,4 @@ def account_processor(request):
         me = Account.objects.get(user=request.user)
         return {'me': me, 'child_accounts': get_child_accounts(me)}
     except TypeError:
-        return {'me': me, 'child_accounts': None}
+        return {'me': None, 'child_accounts': None}
