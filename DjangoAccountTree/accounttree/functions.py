@@ -7,22 +7,18 @@ from .models import Account
 from .permissions import check_permission, PermissionType
 
 
-def get_child_accounts(user_account, get_siblings=False, active=True):
+def get_child_accounts(parent, get_siblings=False, active=True):
     if get_siblings:
-        children = Q(parent=user_account, active=active)
-        siblings = Q(parent=user_account.parent, active=active)
+        children = Q(parent=parent, active=active)
+        siblings = Q(parent=parent.parent, active=active)
         return Account.objects.filter(children | siblings).order_by('name')
 
     else:
-        return Account.objects.filter(parent=user_account, active=active).order_by('name')
+        return Account.objects.filter(parent=parent, active=active).order_by('name')
 
 
 def get_account_by_slug(slug):
     return Account.objects.get(slug=slug)
-
-
-def get_accounts(parent, active=True):
-    return Account.objects.filter(parent=parent, active=active).order_by('name')
 
 
 def slug_unique(slug):
@@ -37,21 +33,23 @@ def slug_unique(slug):
         return slug_unique(slug + random.choice(string.ascii_letters))
 
 
+"""
+ Rewrite this garbage so it's testable and document it!
 def get_client_breadcrumb(me, account):
     parents = []
 
     try:
         while account != me.parent:
-            parents.append(account.slug)
+            parents.append(account)
             account = account.parent
-    except AttributeError:
-        pass
+    except AttributeError as e:
+        print(e.with_traceback() + " get_client_breadcrumb")
     try:
         parents.reverse()
-        parents.pop()
     except IndexError:
         return None
     return parents
+"""
 
 
 def new_client_short(request, me, current_account=None):

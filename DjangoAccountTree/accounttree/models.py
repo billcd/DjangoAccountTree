@@ -38,6 +38,6 @@ class Account(models.Model):
 
     def __str__(self):
         if self.parent and self != self.parent:
-            return self.parent.name + " - " + self.name
+            return str(self.parent) + " : " + self.name
         else:
             return self.name
