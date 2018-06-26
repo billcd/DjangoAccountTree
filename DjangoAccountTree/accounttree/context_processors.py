@@ -6,5 +6,6 @@ def account_processor(request):
     try:
         me = Account.objects.get(user=request.user)
         return {'me': me, 'child_accounts': get_child_accounts(me)}
-    except TypeError:
+    except (TypeError, Account.DoesNotExist):
         return {'me': None, 'child_accounts': None}
+
