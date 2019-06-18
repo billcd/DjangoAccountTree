@@ -1,9 +1,5 @@
 .idea
-account
 DjangoAccountTree/db.sqlite3
-DjangoAccountTree/DjangoAccountTree/settings.py
-
-
 
 
 # Byte-compiled / optimized / DLL files

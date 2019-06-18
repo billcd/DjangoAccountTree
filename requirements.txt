@@ -1,5 +1,3 @@
 # packages are latest stable, once django 2.1LTS is out, all of my projects will be moved to that
 
-coverage==4.5.1
-Django==2.0.6
-pytz==2018.4
+django==2.2
